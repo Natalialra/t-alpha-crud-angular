@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "crud-com-autenticao-angular"
+    }
+  },
+  "defaultProject": "crud-com-autenticao-angular",
+  "cli": {
+    "analytics": false
+  }
 }
