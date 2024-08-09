@@ -36,7 +36,7 @@
               </div>
             </div>
             <div class="mb-3 form-group">
-              <input type="text" class="form-control" id="phone" formControlName="phone" placeholder="Telefone"/>
+              <input type="text" class="form-control" id="phone" formControlName="phone" placeholder="Telefone" [maxlength]="11"/>
               <div *ngIf="phone?.errors?.required && phone?.touched"
                    class="text-danger">
                 O telefone é obrigatório.
