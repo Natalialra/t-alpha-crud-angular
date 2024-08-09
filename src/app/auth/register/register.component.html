@@ -1,0 +1,88 @@
+<section class="ftco-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 text-center mb-5">
+        <h2 class="heading-section">Registrar</h2>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-4">
+        <div class="login-wrap py-5">
+
+          <form [formGroup]="registerForm" (ngSubmit)="register()">
+            <div class="mb-3 form-group">
+              <input type="text" class="form-control" id="name" formControlName="name" placeholder="Nome"/>
+              <div *ngIf="name?.errors?.required && name?.touched"
+                   class="text-danger">
+                O nome é obrigatório.
+              </div>
+            </div>
+            <div class="mb-3 form-group">
+              <input type="text" class="form-control" id="taxNumber" formControlName="taxNumber" placeholder="CPF"/>
+              <div *ngIf="taxNumber?.errors?.required && taxNumber?.touched"
+                   class="text-danger">
+                O CPF é obrigatório.
+              </div>
+            </div>
+            <div class="form-group mb-2">
+              <input type="text" class="form-control" id="mail" formControlName="mail" placeholder="E-mail"/>
+              <div *ngIf="!mail && mail?.touched"
+                   class="text-danger">
+                E-mail inválido.
+              </div>
+              <div *ngIf="mail?.errors?.required && mail?.touched"
+                   class="text-danger">
+                O e-mail é obrigatório.
+              </div>
+            </div>
+            <div class="mb-3 form-group">
+              <input type="text" class="form-control" id="phone" formControlName="phone" placeholder="Telefone"/>
+              <div *ngIf="phone?.errors?.required && phone?.touched"
+                   class="text-danger">
+                O telefone é obrigatório.
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <input type="password" class="form-control" id="password" formControlName="password" placeholder="Senha">
+              <div *ngIf="password?.errors?.required && password?.touched"
+                   class="text-danger">
+                A senha é obrigatória.
+              </div>
+              <div *ngIf="password?.errors?.minlength && password?.touched"
+                   class="text-danger">
+                A senha deve ter pelo menos 6 caracteres.
+              </div>
+            </div>
+            <div class="form-group mb-3">
+              <div class="icon d-flex align-items-center justify-content-center">
+                <span class="fa fa-lock"></span>
+              </div>
+              <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword"
+                     placeholder="Confirmação de senha">
+              <div
+                *ngIf="confirmPassword?.errors?.required && confirmPassword?.touched"
+                class="text-danger">
+                A confirmação de senha é obrigatória.
+              </div>
+              <div
+                *ngIf="confirmPassword?.errors?.passwordMismatch && confirmPassword?.touched"
+                class="text-danger">
+                As senhas não coincidem.
+              </div>
+            </div>
+            <div class="form-group">
+              <button type="submit" [disabled]="!registerForm.valid"
+                      class="btn form-control btn-primary rounded submit px-3">
+                Cadastrar
+              </button>
+            </div>
+          </form>
+          <div class="w-100 text-center mt-4 text">
+            <p class="mb-0">Já possui cadastro?</p>
+            <a routerLink="/login" >login</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
