@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'crud-com-autenticao-angular';
+  title = 'crud-com-autenticacao-angular';
 }
