@@ -46,9 +46,8 @@ export class LoginComponent implements OnInit {
         const response = await this.authService.login(credentials).toPromise();
 
         if (response.success) {
-          console.log('Successfully logged in');
           const token = response.data.token;
-          localStorage.setItem('authToken', token);
+          localStorage.setItem('token', token);
           this.authService.setAuthenticationHeaders(token);
 
           this.toastr.success('Login realizado com sucesso!');
