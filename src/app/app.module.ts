@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { ProductsListComponent } from './products/products-list/products-list.component';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
+import { ProductsFormComponent } from './products/products-form/products-form.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
     LoginComponent,
     RegisterComponent,
     ProductsListComponent,
+    ProductsFormComponent,
   ],
   imports: [
     BrowserModule,
