@@ -1,5 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Products} from '../../models/products';
+import {ProductsService} from '../../services/products.service';
+import {ToastrService} from 'ngx-toastr';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-products-form',
@@ -11,20 +15,21 @@ export class ProductsFormComponent implements OnInit {
   public isEditMode = false;
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private productService: ProductsService,
+    private toastr: ToastrService,
+    private router: Router
   ) {
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   initializeForm(): FormGroup {
     return this.fb.group({
-      id: [null],
       name: ['', Validators.required],
       description: [''],
-      price: ['', [Validators.required, Validators.min(0)]],
-      stock: ['', [Validators.required, Validators.min(0)]]
+      price: ['', Validators.required],
+      stock: ['', Validators.required]
     });
   }
 
@@ -45,6 +50,22 @@ export class ProductsFormComponent implements OnInit {
   }
 
   createProduct(): void {
-   return null;
+    if (this.productForm.valid) {
+      const productData: Products = this.productForm.value;
+
+      this.productService.createProduct(productData).subscribe({
+        next: () => {
+            this.productForm.reset();
+            this.toastr.success('Produto criado com sucesso!');
+            this.router.navigate(['/products']);
+        },
+        error: (error) => {
+          console.error('Erro ao criar produto:', error);
+          this.toastr.error('Erro ao tentar cadastrar o produto!');
+        }
+      });
+    } else {
+      this.toastr.warning('Preencha todos os campos obrigatórios.');
+    }
   }
 }
