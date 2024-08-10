@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
-import { Products} from '../models/products';
+import {Products} from '../models/products';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 
@@ -9,6 +9,7 @@ import {map} from 'rxjs/operators';
 interface ProductsResponse {
   data: {
     products: Products[];
+    product: Products[];
   };
 }
 @Injectable({
@@ -17,13 +18,15 @@ interface ProductsResponse {
 export class ProductsService {
   private apiUrl = 'https://interview.t-alpha.com.br/api/products';
   public headers = this.createAuthHeaders();
-  constructor(private http: HttpClient) { }
+
+  constructor(private http: HttpClient) {
+  }
 
   private createAuthHeaders(): HttpHeaders {
     const token = localStorage.getItem('token');
     return new HttpHeaders().set('Authorization', `Bearer ${token}`);
   }
-  createProduct(product: Products): Observable<any>{
+  createProduct(product: Products): Observable<any> {
     return this.http.post(`${this.apiUrl}/create-product`, product, {headers: this.headers});
   }
   getAllProducts(): Observable<Products[]> {
@@ -32,13 +35,16 @@ export class ProductsService {
         map(response => response.data.products)
       );
   }
-  getProductById(productId: number): Observable<any>{
-    return this.http.get(`${this.apiUrl}/get-one-product/${productId}`, {headers: this.headers});
+  getProductById(productId: string): Observable<any> {
+    return this.http.get<ProductsResponse>(`${this.apiUrl}/get-one-product/${productId}`, {headers: this.headers})
+      .pipe(
+        map(response => response.data.product)
+      );
   }
-  updateProduct(productId: number, product: Products): Observable<any>{
+  updateProduct(productId: string, product: Products): Observable<any> {
     return this.http.patch(`${this.apiUrl}/update-product/${productId}`, product, {headers: this.headers});
   }
-  deleteProduct(productId: number): Observable<any>{
+  deleteProduct(productId: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/delete-product/${productId}`, {headers: this.headers});
   }
 }
