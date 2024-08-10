@@ -3,7 +3,14 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 import { Products} from '../models/products';
 import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
+
+interface ProductsResponse {
+  data: {
+    products: Products[];
+  };
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -19,8 +26,11 @@ export class ProductsService {
   createProduct(product: Products): Observable<any>{
     return this.http.post(`${this.apiUrl}/create-product`, product, {headers: this.headers});
   }
-  getAllProducts(): Observable<any>{
-    return this.http.get(`${this.apiUrl}/get-all-products`, {headers: this.headers});
+  getAllProducts(): Observable<Products[]> {
+    return this.http.get<ProductsResponse>(`${this.apiUrl}/get-all-products`, {headers: this.headers})
+      .pipe(
+        map(response => response.data.products)
+      );
   }
   getProductById(productId: number): Observable<any>{
     return this.http.get(`${this.apiUrl}/get-one-product/${productId}`, {headers: this.headers});
