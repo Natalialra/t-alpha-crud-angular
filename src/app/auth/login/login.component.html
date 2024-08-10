@@ -9,7 +9,7 @@
       <div class="col-md-6 col-lg-4">
         <div class="login-wrap py-5">
 
-          <form [formGroup]="loginForm" (ngSubmit)="login()">
+          <form [formGroup]="loginForm" (ngSubmit)="login(loginForm)">
             <div class="mb-3 form-group">
               <input type="text" class="form-control" id="taxNumber" formControlName="taxNumber" placeholder="CPF"/>
               <div *ngIf="taxNumber?.errors?.required && taxNumber?.touched"
@@ -31,7 +31,7 @@
             <div class="form-group">
               <button type="submit" [disabled]="!loginForm.valid"
                       class="btn form-control btn-primary rounded submit px-3">
-                Cadastrar
+                Entrar
               </button>
             </div>
           </form>
