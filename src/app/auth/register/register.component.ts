@@ -13,7 +13,10 @@ import {Router} from '@angular/router';
 export class RegisterComponent implements OnInit {
   public registerForm: FormGroup = this.initializeForm();
   constructor(
-    private formBuilder: FormBuilder, private authService: AuthService, private toastr: ToastrService, private router: Router
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private toastr: ToastrService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
