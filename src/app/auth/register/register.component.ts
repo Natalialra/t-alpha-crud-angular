@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
       mail: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required, Validators.minLength(11)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
+      confirmPassword: ['', [Validators.required, this.confirmPasswordValidator.bind(this)]]
     });
   }
   get name(): AbstractControl {
@@ -73,7 +73,18 @@ export class RegisterComponent implements OnInit {
    } else {
      this.toastr.error('Erro ao registrar usuário, verifique os dados informados.');
    }
-  }}
+  }
+  confirmPasswordValidator(control: { value: string; }): {passwordMismatch: boolean} {
+    const confirmPasswordValue = control.value;
+    const passwordValue = this.registerForm?.get('password')?.value;
+
+    if (confirmPasswordValue !== passwordValue) {
+      return { passwordMismatch: true };
+    } else {
+      return null;
+    }
+  }
+}
 
 
 
