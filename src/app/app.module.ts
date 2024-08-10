@@ -12,7 +12,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { ProductsListComponent } from './products/products-list/products-list.component';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { ProductsFormComponent } from './products/products-list/products-form/products-form.component';
-import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { NgxMaskModule } from 'ngx-mask';
 
 
 @NgModule({
