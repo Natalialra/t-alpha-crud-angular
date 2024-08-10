@@ -24,7 +24,7 @@
       <td>{{product.price }}</td>
       <td>{{product.stock}}</td>
       <td class="d-flex">
-        <i class="fa-solid fa-pencil" style="color: green; margin-right: 20px;" ></i>
+        <i class="fa-solid fa-pencil" style="color: green; margin-right: 20px;" (click)="edit(product.id)" ></i>
         <i class="fa solid fa-trash" style="color: red" ></i>
       </td>
     </tr>
