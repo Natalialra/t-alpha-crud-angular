@@ -60,7 +60,7 @@ h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
   border-radius: 5px;
   padding-left: 30px;
   padding-right: 30px;
-  box-shadow: 0px 10px 34px -15px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 10px 34px -15px rgba(0, 0, 0, 0.24);
 }
 .login-wrap h3 {
   font-weight: 400;
@@ -160,7 +160,6 @@ h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
 }
 .checkbox-wrap .checkmark:after {
   content: "\f0c8";
-  font-family: "FontAwesome";
   position: absolute;
   color: rgba(0, 0, 0, 0.1);
   font-size: 20px;
@@ -170,7 +169,6 @@ h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
 .checkbox-wrap input:checked ~ .checkmark:after {
   display: block;
   content: "\f14a";
-  font-family: "FontAwesome";
   color: rgba(0, 0, 0, 0.2);
 }
 .checkbox-primary {
