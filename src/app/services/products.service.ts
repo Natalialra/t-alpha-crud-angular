@@ -20,4 +20,7 @@ export class ProductsService {
   getProductById(productId: number): Observable<any>{
     return this.http.get(`${this.apiUrl}/get-one-product/${productId}`);
   }
+  updateProduct(productId: number, product: Products): Observable<any>{
+    return this.http.patch(`${this.apiUrl}/update-product/${productId}`, product);
+  }
 }
