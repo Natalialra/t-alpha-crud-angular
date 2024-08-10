@@ -19,13 +19,13 @@
     </thead>
     <tbody>
     <tr *ngFor="let product of products$ | async" >
-      <td class="text-left pl-5">{{product.name}}</td>
+      <td class="text-left">{{product.name}}</td>
       <td>{{product.description}}</td>
       <td>{{product.price }}</td>
       <td>{{product.stock}}</td>
       <td class="d-flex">
-        <i class="bi bi-pencil-square" style="color: green; margin-right: 20px;" ></i>
-        <i class="bi bi-trash" style="color: red" ></i>
+        <i class="fa-solid fa-pencil" style="color: green; margin-right: 20px;" ></i>
+        <i class="fa solid fa-trash" style="color: red" ></i>
       </td>
     </tr>
     </tbody>
