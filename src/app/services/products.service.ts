@@ -16,4 +16,8 @@ export class ProductsService {
   }
   getAllProducts(): Observable<any>{
     return this.http.get(`${this.apiUrl}/get-all-products`);
-  }}
+  }
+  getProductById(productId: number): Observable<any>{
+    return this.http.get(`${this.apiUrl}/get-one-product/${productId}`);
+  }
+}
