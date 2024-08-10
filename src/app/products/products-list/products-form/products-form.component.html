@@ -9,7 +9,7 @@
       <div class="col-md-6 col-lg-4">
         <div class="login-wrap py-5">
 
-          <form [formGroup]="productForm" (ngSubmit)="createProduct()">
+          <form [formGroup]="productForm" (ngSubmit)="saveProduct()">
             <div class="mb-3 form-group">
               <input type="text" class="form-control" id="name" formControlName="name" placeholder="Nome"/>
               <div *ngIf="name?.errors?.required && name.touched"
@@ -35,10 +35,10 @@
                 Quantidade em estoque é obrigatória.
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" >
               <button type="submit" [disabled]="!productForm.valid"
-                      class="btn form-control btn-primary rounded submit px-3">
-                Cadastrar
+                      class="btn form-control btn-primary rounded submit px-3" >
+                {{ isEditMode ? 'Atualizar Produto' : 'Cadastrar Produto' }}
               </button>
             </div>
           </form>
