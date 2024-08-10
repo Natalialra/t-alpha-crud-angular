@@ -18,4 +18,10 @@ export class AuthService {
   login(user: Partial<User>): Observable<any>{
     return this.http.post(`${this.apiUrl}/login`, user);
   }
+
+  setAuthenticationHeaders(token: string): void {
+    this.headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+  }
 }
