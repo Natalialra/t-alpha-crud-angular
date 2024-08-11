@@ -15,6 +15,7 @@ import { ProductsFormComponent } from './products/products-list/products-form/pr
 import { NgxMaskModule } from 'ngx-mask';
 import { LOCALE_ID } from '@angular/core';
 import { CurrencyPipe } from './pipes/currency.pipe';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { CurrencyPipe } from './pipes/currency.pipe';
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    NgbModule
   ],
   providers: [
     {
