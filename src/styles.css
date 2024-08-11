@@ -1,4 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
 body {
   align-items: center;
   text-align: center;
@@ -6,6 +5,11 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
   color: #333333;
   background-image: linear-gradient(90deg, #df64f1b0 0%, #6179d16e 50%) !important;
+  font-family: 'Lato', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.8;
+  font-weight: normal;
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .backcolor {
@@ -98,8 +102,7 @@ body {
   opacity: 0.4;
 }
 /*Additional properties for button version
- iOS requires the button element instead of an anchor tag.
- If you want the anchor version, it requires `href="#"`.*/
+ iOS requires the button element instead of an anchor tag.*/
 button.toast-close-button {
   padding: 0;
   cursor: pointer;
@@ -213,3 +216,158 @@ button.toast-close-button {
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+a {
+  transition: 0.3s all ease;
+  color: #b689b0;
+}
+a:hover, a:focus {
+  text-decoration: none !important;
+  outline: none !important;
+  box-shadow: none;
+  color: #b689b0;
+}
+
+h1, h2, h3, h4, h5, .h1, .h2, .h3, .h4, .h5 {
+  line-height: 1.5;
+  font-weight: 400;
+  font-family: 'Lato', Arial, sans-serif;
+  color: #000;
+}
+
+.bg-primary {
+  background: #b689b0 !important;
+}
+
+.ftco-section {
+  padding: 7em 0;
+}
+
+.ftco-no-pt {
+  padding-top: 0;
+}
+
+.ftco-no-pb {
+  padding-bottom: 0;
+}
+
+/* HEADING SECTION */
+.heading-section {
+  font-size: 28px;
+  color: #000;
+}
+
+/* COVER BG */
+
+.login-wrap {
+  position: relative;
+  background: #000232;
+  border-radius: 5px;
+  padding-left: 30px;
+  padding-right: 30px;
+  box-shadow: 0 10px 34px -15px rgba(0, 0, 0, 0.24);
+}
+.login-wrap h3 {
+  font-weight: 400;
+  font-size: 18px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.login-wrap p {
+  color: rgba(255, 255, 255, 0.5);
+}
+.login-wrap .img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+/* BUTTON */
+.btn {
+  cursor: pointer;
+  border-radius: 40px;
+  box-shadow: none !important;
+  font-size: 15px;
+}
+.btn:hover, .btn:active, .btn:focus {
+  outline: none;
+}
+.btn.btn-primary {
+  background: #b689b0 !important;
+  border: 1px solid #b689b0 !important;
+  color: #fff !important;
+}
+.btn.btn-primary:hover {
+  border: 1px solid #b689b0;
+  background: #db0dbf !important;
+  color: #fff!important;
+}
+.btn.btn-outline-primary {
+  border: 1px solid #b689b0;
+  background: transparent;
+  color: #b689b0;
+}
+.btn.btn-outline-primary:hover {
+  border: 1px solid transparent;
+  background: #b689b0;
+  color: #fff;
+}
+
+.form-group {
+  position: relative;
+}
+.form-group .icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 20px;
+  height: 48px;
+  background: transparent;
+  font-size: 18px;
+}
+.form-group .icon span {
+  color: #fff;
+}
+
+/* FORM CONTROL */
+.form-control {
+  height: 48px;
+  background: rgba(0, 0, 0, 0.05);
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-size: 14px;
+  box-shadow: none;
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid #b689b0;
+  padding-left: 30px;
+  padding-right: 0;
+  letter-spacing: 1px;
+  transition: all 0.3s;
+}
+.form-control::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+.form-control::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+.form-control:-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+.form-control:-moz-placeholder {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+.form-control:focus, .form-control:active {
+  outline: none !important;
+  box-shadow: none;
+  background: rgba(0, 0, 0, 0.07);
+  border-color: #b689b0;
+}
+
+.text a {
+  text-transform: uppercase;
+}
+
