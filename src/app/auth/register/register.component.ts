@@ -51,24 +51,20 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.get('confirmPassword');
    }
   async register(): Promise<void> {
-    if (this.registerForm.valid) {
-      const newUser: User = {
-        name: this.name.value,
-        taxNumber: this.taxNumber.value,
-        mail: this.mail.value,
-        phone: this.phone.value,
-        password: this.password.value
-      };
+    if (this.registerForm.invalid) {
+      this.toastr.warning('Por favor, preencha todos os campos corretamente.');
+      return;
+    }
 
-      try {
-        const response = await this.authService.register(newUser).toPromise();
-        console.log(response);
-        this.toastr.success('Usuário registrado com sucesso!');
-        await this.router.navigate(['/login']);
-      } catch (error) {
-        console.error(error);
-        this.toastr.error('Erro ao registrar usuário!');
-      }
+    const newUser: User = this.registerForm.value;
+
+    try {
+      await this.authService.register(newUser).toPromise();
+      this.toastr.success('Usuário registrado com sucesso!');
+      await this.router.navigate(['/login']);
+    } catch (error) {
+      console.error('Erro ao registrar usuário:', error);
+      this.toastr.error('Erro ao registrar usuário!');
     }
   }
   confirmPasswordValidator(control: { value: string; }): {passwordMismatch: boolean} {
