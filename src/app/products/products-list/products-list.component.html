@@ -1,9 +1,9 @@
 <div class="container my-3">
-  <div class="row d-flex bg-dark rounded text-white p-2 my-3 ">
-    <h2>Lista de Produtos</h2>
+  <div class="col-12 text-center mb-3">
+    <h2 class="bg-primary rounded text-white p-2 my-3">Lista de Produtos</h2>
   </div>
   <div class="col-12">
-    <button class="btn btn-dark" [routerLink]="['/product']">Adicionar Produto</button>
+    <button class="btn btn-primary" [routerLink]="['/product']">Adicionar Produto</button>
   </div>
 </div>
 <div class="container rounded">
@@ -18,15 +18,17 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let product of products$ | async" >
-      <td class="text-left">{{product.name}}</td>
-      <td>{{product.description}}</td>
-      <td >{{product.price | currency}}</td>
-      <td>{{product.stock}}</td>
-      <td >
-        <i class="fa-solid fa-eye" style="color: blue; margin-right: 20px;" (click)="view(product.id)" ></i>
-        <i class="fa-solid fa-pencil" style="color: green; margin-right: 20px;" (click)="edit(product.id)" ></i>
-        <i class="fa solid fa-trash" style="color: red" (click)="delete(product.id)" ></i>
+    <tr *ngFor="let product of products$ | async">
+      <td class="text-left">{{ product.name }}</td>
+      <td>{{ product.description }}</td>
+      <td>{{ product.price | currency }}</td>
+      <td>{{ product.stock }}</td>
+      <td>
+        <i class="fa-solid fa-eye" style="color: blue; margin-right: 20px;" (click)="view(product.id)"
+           ngbTooltip="Visualizar"></i>
+        <i class="fa-solid fa-pencil" style="color: green; margin-right: 20px;" (click)="edit(product.id)"
+           ngbTooltip="Editar"></i>
+        <i class="fa solid fa-trash" style="color: red" (click)="delete(product.id)" ngbTooltip="Excluir"></i>
       </td>
     </tr>
     </tbody>
