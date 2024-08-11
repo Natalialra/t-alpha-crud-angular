@@ -1,8 +1,8 @@
 <section class="ftco-section">
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-md-6 text-center mb-5">
-        <h2 class="heading-section">Produto</h2>
+      <div class="col-4 text-center mb-3">
+        <h2 class=" bg-primary rounded text-white p-2 my-3">Produto</h2>
       </div>
     </div>
     <div class="row justify-content-center">
@@ -35,7 +35,7 @@
                 Quantidade em estoque é obrigatória.
               </div>
             </div>
-            <div class="form-group" >
+            <div class="form-group" *ngIf="!isViewMode" >
               <button type="submit" [disabled]="!productForm.valid"
                       class="btn form-control btn-primary rounded submit px-3" >
                 {{ isEditMode ? 'Atualizar Produto' : 'Cadastrar Produto' }}
@@ -43,6 +43,15 @@
             </div>
           </form>
         </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="d-flex justify-content-center mt-4">
+      <div class="form-group  col-1 d-flex align-items-center">
+        <button class="p-0 btn form-control btn-primary rounded text-center" [routerLink]="'/products'">
+          Voltar
+        </button>
       </div>
     </div>
   </div>

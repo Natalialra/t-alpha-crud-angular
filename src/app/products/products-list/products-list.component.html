@@ -1,6 +1,6 @@
 <div class="container my-3">
-  <div class="row d-flex ">
-    <h2>Tarefas</h2>
+  <div class="row d-flex bg-dark rounded text-white p-2 my-3 ">
+    <h2>Lista de Produtos</h2>
   </div>
   <div class="col-12">
     <button class="btn btn-dark" [routerLink]="['/product']">Adicionar Produto</button>
@@ -24,8 +24,9 @@
       <td>{{product.price }}</td>
       <td>{{product.stock}}</td>
       <td class="d-flex">
+        <i class="fa-solid fa-eye" style="color: blue; margin-right: 20px;" (click)="view(product.id)" ></i>
         <i class="fa-solid fa-pencil" style="color: green; margin-right: 20px;" (click)="edit(product.id)" ></i>
-        <i class="fa solid fa-trash" style="color: red" ></i>
+        <i class="fa solid fa-trash" style="color: red" (click)="delete(product.id)" ></i>
       </td>
     </tr>
     </tbody>

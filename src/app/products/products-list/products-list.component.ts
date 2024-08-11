@@ -3,6 +3,7 @@ import {ProductsService} from '../../services/products.service';
 import {Products} from '../../models/products';
 import {Observable} from 'rxjs';
 import {Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-products-list',
@@ -14,14 +15,23 @@ export class ProductsListComponent implements OnInit {
 
   constructor(
     private productsService: ProductsService,
-    private router: Router) {
+    private router: Router,
+    private toastr: ToastrService) {
   }
 
   ngOnInit(): void {
   }
-
+  view(id): void {
+    this.router.navigate([`product/${id}`], {queryParams: {mode: 'view'}});
+  }
   edit(id): void {
-    this.router.navigate([`newproduct/${id}`]);
+    this.router.navigate([`product/${id}`]);
+  }
+  delete(id): void {
+    this.productsService.deleteProduct(id).subscribe(() => {
+      this.toastr.success('Produto deletado com sucesso!');
+      this.products$ = this.productsService.getAllProducts() as Observable<Products[]>;
+    });
   }
 
 }

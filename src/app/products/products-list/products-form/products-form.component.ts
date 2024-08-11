@@ -13,6 +13,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class ProductsFormComponent implements OnInit {
   public productForm: FormGroup = this.initializeForm();
   public isEditMode = false;
+  public isViewMode = false;
   public productId: string;
 
   constructor(
@@ -27,10 +28,20 @@ export class ProductsFormComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.productId = params.get('id');
-      if (this.productId) {
+      const mode = this.route.snapshot.queryParamMap.get('mode');
+
+      if (mode === 'view') {
+        this.isViewMode = true;
+      } else if (this.productId) {
         this.isEditMode = true;
-        console.log(this.productId);
+      }
+
+      if (this.productId) {
         this.loadProduct(this.productId);
+      }
+
+      if (this.isViewMode) {
+        this.productForm.disable();
       }
     });
   }
