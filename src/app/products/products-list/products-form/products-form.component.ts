@@ -89,7 +89,7 @@ export class ProductsFormComponent implements OnInit {
   }
 
 
-  createProduct(productData): void {
+  createProduct(productData: Products): void {
 
     this.productService.createProduct(productData).subscribe({
       next: () => {
