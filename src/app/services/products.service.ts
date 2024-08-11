@@ -1,50 +1,52 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 
 import {Products} from '../models/products';
 import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 
-
-interface ProductsResponse {
-  data: {
-    products: Products[];
-    product: Products[];
-  };
-}
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
   private apiUrl = 'https://interview.t-alpha.com.br/api/products';
-  public headers = this.createAuthHeaders();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) { }
+  createProduct(product: Products): Observable<Products> {
+    return this.http
+      .post<Products>(`${this.apiUrl}/create-product`, product)
+      .pipe(catchError(this.handleError));
   }
 
-  private createAuthHeaders(): HttpHeaders {
-    const token = localStorage.getItem('token');
-    return new HttpHeaders().set('Authorization', `Bearer ${token}`);
-  }
-  createProduct(product: Products): Observable<any> {
-    return this.http.post(`${this.apiUrl}/create-product`, product, {headers: this.headers});
-  }
   getAllProducts(): Observable<Products[]> {
-    return this.http.get<ProductsResponse>(`${this.apiUrl}/get-all-products`, {headers: this.headers})
+    return this.http
+      .get<{ data: { products: Products[] } }>(`${this.apiUrl}/get-all-products`)
       .pipe(
-        map(response => response.data.products)
+        map(response => response.data.products),
+        catchError(this.handleError)
       );
   }
-  getProductById(productId: string): Observable<any> {
-    return this.http.get<ProductsResponse>(`${this.apiUrl}/get-one-product/${productId}`, {headers: this.headers})
+  getProductById(productId: string): Observable<Products> {
+    return this.http
+      .get<{ data: { product: Products } }>(`${this.apiUrl}/get-one-product/${productId}`)
       .pipe(
-        map(response => response.data.product)
+        map(response => response.data.product),
+        catchError(this.handleError)
       );
   }
-  updateProduct(productId: string, product: Products): Observable<any> {
-    return this.http.patch(`${this.apiUrl}/update-product/${productId}`, product, {headers: this.headers});
+  updateProduct(productId: string, product: Products): Observable<Products> {
+    return this.http
+      .patch<Products>(`${this.apiUrl}/update-product/${productId}`, product)
+      .pipe(catchError(this.handleError));
   }
-  deleteProduct(productId: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/delete-product/${productId}`, {headers: this.headers});
+  deleteProduct(productId: string): Observable<void> {
+    return this.http
+      .delete<void>(`${this.apiUrl}/delete-product/${productId}`)
+      .pipe(catchError(this.handleError));
+  }
+
+  private handleError(error: any): Observable<never> {
+    console.error('An error occurred:', error);
+    throw error;
   }
 }
