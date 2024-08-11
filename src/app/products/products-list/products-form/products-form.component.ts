@@ -73,7 +73,10 @@ export class ProductsFormComponent implements OnInit {
 
   saveProduct(): void {
     if (this.productForm.valid) {
-      const productData: Products = this.productForm.value;
+      const productData: Products = {
+        ...this.productForm.value,
+        price: Number(this.productForm.value.price),
+      };
 
       if (this.isEditMode) {
         this.updateProduct(this.productId, productData);
