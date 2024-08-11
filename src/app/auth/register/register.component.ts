@@ -56,7 +56,13 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    const newUser: User = this.registerForm.value;
+    const newUser: User = {
+      name: this.name.value,
+      taxNumber: this.taxNumber.value,
+      mail: this.mail.value,
+      phone: this.phone.value,
+      password: this.password.value
+    };
 
     try {
       await this.authService.register(newUser).toPromise();
