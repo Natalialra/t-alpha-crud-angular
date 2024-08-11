@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {ProductsService} from '../../services/products.service';
 import {Products} from '../../models/products';
 import {Observable} from 'rxjs';
@@ -10,7 +10,7 @@ import {ToastrService} from 'ngx-toastr';
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.css']
 })
-export class ProductsListComponent implements OnInit {
+export class ProductsListComponent {
   public products$: Observable<Products[]> = this.productsService.getAllProducts() as Observable<Products[]>;
 
   constructor(
@@ -19,15 +19,15 @@ export class ProductsListComponent implements OnInit {
     private toastr: ToastrService) {
   }
 
-  ngOnInit(): void {
-  }
-  view(id): void {
+  view(id: string): void {
     this.router.navigate([`product/${id}`], {queryParams: {mode: 'view'}});
   }
-  edit(id): void {
+
+  edit(id: string): void {
     this.router.navigate([`product/${id}`]);
   }
-  delete(id): void {
+
+  delete(id: string): void {
     this.productsService.deleteProduct(id).subscribe(() => {
       this.toastr.success('Produto deletado com sucesso!');
       this.products$ = this.productsService.getAllProducts() as Observable<Products[]>;
