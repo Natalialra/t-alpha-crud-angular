@@ -13,6 +13,8 @@ import { ProductsListComponent } from './products/products-list/products-list.co
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { ProductsFormComponent } from './products/products-list/products-form/products-form.component';
 import { NgxMaskModule } from 'ngx-mask';
+import { LOCALE_ID } from '@angular/core';
+import { CurrencyPipe } from './pipes/currency.pipe';
 
 
 @NgModule({
@@ -22,6 +24,7 @@ import { NgxMaskModule } from 'ngx-mask';
     RegisterComponent,
     ProductsListComponent,
     ProductsFormComponent,
+    CurrencyPipe,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +40,9 @@ import { NgxMaskModule } from 'ngx-mask';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
       multi: true
+    },
+    { provide: LOCALE_ID,
+      useValue: 'pt-BR'
     }
   ],
   bootstrap: [AppComponent]
