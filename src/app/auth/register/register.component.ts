@@ -22,8 +22,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // tslint:disable-next-line:typedef
-  initializeForm() {
+  initializeForm(): FormGroup {
     return this.formBuilder.group({
       name: ['', Validators.required],
       taxNumber: ['', Validators.required],

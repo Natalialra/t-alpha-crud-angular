@@ -8,7 +8,6 @@
     <div class="row justify-content-center">
       <div class="col-md-6 col-lg-4">
         <div class="login-wrap py-5">
-
           <form [formGroup]="registerForm" (ngSubmit)="register()">
             <div class="mb-3 form-group">
               <input type="text" class="form-control" id="name" formControlName="name" placeholder="Nome"/>
@@ -21,7 +20,7 @@
               </div>
             </div>
             <div class="mb-3 form-group">
-              <input type="text" class="form-control" id="taxNumber" formControlName="taxNumber" placeholder="CPF"/>
+              <input type="text" class="form-control" id="taxNumber" formControlName="taxNumber" placeholder="CPF" mask="000.000.000-00"/>
               <div class="icon d-flex align-items-center justify-content-center">
                 <span class="fa fa-passport fa-sm"></span>
               </div>
@@ -35,7 +34,7 @@
               <div class="icon d-flex align-items-center justify-content-center">
                 <span class="fa fa-envelope fa-sm"></span>
               </div>
-              <div *ngIf="!mail && mail?.touched"
+              <div *ngIf="mail?.hasError('email') && mail?.touched"
                    class="text-danger">
                 E-mail inválido.
               </div>
@@ -46,7 +45,7 @@
             </div>
             <div class="mb-3 form-group">
               <input type="text" class="form-control" id="phone" formControlName="phone" placeholder="Telefone"
-                     [maxlength]="11"/>
+                     [maxlength]="17" mask="(00) 0 0000 0000"/>
               <div class="icon d-flex align-items-center justify-content-center">
                 <span class="fa fa-phone fa-sm"></span>
               </div>
