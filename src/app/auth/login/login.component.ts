@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
@@ -10,7 +10,7 @@ import {ToastrService} from 'ngx-toastr';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   public loginForm: FormGroup = this.initializeForm();
 
   constructor(
@@ -19,9 +19,6 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService
   ) { }
-
-  ngOnInit(): void {
-  }
 
   initializeForm(): any {
     return this.formBuilder.group({
@@ -38,26 +35,33 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('password');
   }
 
-  async login(loginForm: FormGroup): Promise<void> {
-    if (loginForm.valid) {
-      const credentials = this.loginForm.value;
-
-      try {
-        const response = await this.authService.login(credentials).toPromise();
-
-        if (response.success) {
-          const token = response.data.token;
-          localStorage.setItem('token', token);
-          this.authService.setAuthenticationHeaders(token);
-
-          this.toastr.success('Login realizado com sucesso!');
-          await this.router.navigate(['/products']);
-        } else {
-          this.toastr.error('Erro ao realizar login, verifique os dados informados');
-        }
-      } catch (error) {
-        console.error('Erro ao realizar login:', error);
-      }
+  async login(): Promise<void> {
+    if (this.loginForm.invalid) {
+      this.toastr.warning('Por favor, preencha todos os campos corretamente.');
+      return;
     }
+
+    const credentials = this.loginForm.value;
+
+    try {
+      const response = await this.authService.login(credentials).toPromise();
+
+      if (response.success) {
+        const { token } = response.data;
+        localStorage.setItem('token', token);
+        this.authService.setAuthenticationHeaders(token);
+
+        this.toastr.success('Login realizado com sucesso!');
+        await this.router.navigate(['/products']);
+      } else {
+        this.handleLoginError();
+      }
+    } catch (error) {
+      this.handleLoginError(error);
+    }
+  }
+  private handleLoginError(error?: any): void {
+    console.error('Erro ao realizar login:', error);
+    this.toastr.error('Erro ao realizar login, verifique os dados informados.');
   }
 }
